@@ -1,0 +1,4 @@
+fastapi
+uvicorn
+httpx  # for calling LLM APIs like Mistral
+python-dotenv  # for managing your API keys securely
