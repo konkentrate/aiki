@@ -1,4 +1,5 @@
-fastapi
-uvicorn
+fastapi # FastAPI for building APIs
+uvicorn # ASGI server for FastAPI
 httpx  # for calling LLM APIs like Mistral
 python-dotenv  # for managing your API keys securely
+mistralai   # Mistral AI Python client
