@@ -14,7 +14,7 @@ This repo contains the current source code.
  
 - [ ] Paste and submit raw text  
 - [ ] Simple HTML form (Thymeleaf)  
-- [ ] Python API for Mistral (raw text -> JSON Anki card)
+- [x] Python API for Mistral (raw text -> JSON Anki card)
 
 ## Milestone 2
 - [ ] OCR PDF documents / scans into raw text for processing
