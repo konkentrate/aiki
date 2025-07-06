@@ -10,6 +10,8 @@ app = FastAPI()
 class TextInput(BaseModel):
     text: str
 
+# Load the Mistral API key from environment variables
+load_dotenv("api_key.env")
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
 if not MISTRAL_API_KEY:
     raise ValueError("MISTRAL_API_KEY not set")
