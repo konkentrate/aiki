@@ -1,3 +1,4 @@
 # Python virtual environments
 .venv/
 venv/
+api_key.env

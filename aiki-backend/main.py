@@ -3,15 +3,16 @@ import json
 from fastapi import FastAPI
 from pydantic import BaseModel
 from mistralai import Mistral
+from dotenv import load_dotenv
 
 app = FastAPI()
 
 class TextInput(BaseModel):
     text: str
 
-# Prompt for API key if not set
-if "MISTRAL_API_KEY" not in os.environ:
-    os.environ["MISTRAL_API_KEY"] = input("Enter your Mistral API key: ")
+MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
+if not MISTRAL_API_KEY:
+    raise ValueError("MISTRAL_API_KEY not set")
 
 MISTRAL_API_KEY = os.environ["MISTRAL_API_KEY"]
 MISTRAL_MODEL = "mistral-small-latest"
