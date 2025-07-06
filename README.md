@@ -18,7 +18,7 @@ This repo contains the current source code.
 - [ ] Basic controller to handle inputs  
 - [ ] Python microservice for parsing (coming next)
 
-One of my endgoals is to have anyone be able to run this on their local machines, using their LLM API of choice (local or not) and manage big knowledge-gardens of Anki cards for fast learninng and relearninng.
+One of my endgoals is to have anyone be able to run this on their local machines, using their LLM API of choice (local or not) and manage big knowledge-gardens of Anki cards for fast learning and relearning.
 
 ---
 
