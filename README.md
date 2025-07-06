@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/konkentrate/aiki/blob/main/aiki.png">
+    <img src="https://github.com/konkentrate/aiki/blob/main/aiki.png" width="250" />
+  </a>
+</p>
+
 # AIKI | Modular Anki Flashcard Generator using LLMs
 
 This is the first commit of a personal project to create a Java/Python app that can:
