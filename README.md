@@ -6,13 +6,13 @@
 
 # AIKI | Modular Anki Flashcard Generator using LLMs
 
-This is the first commit of a personal project to create a Java/Python app that can:
+This is a personal project to create a Java/Python web app that can:
 
 - Accept PDF documents, pasted text, web links and potentially other formats of data
 - Extract, parse, and prepare the content for a large language model (LLM)
 - Generate **Anki-style flashcards** to help users learn and revise from any content
 
-This repo contains the current source code.
+This repo contains the current source code, but keep in mind it is still *WIP* and the scope of the project may change.
 
 ---
 
@@ -30,12 +30,6 @@ One of my endgoals is to have anyone be able to run this on their local machines
 
 ---
 
-## Project Structure
-
-*Work in Progress*
-
----
-
 ## 🛠 Tech Stack (up for change)
 
 - Java 24
@@ -43,6 +37,12 @@ One of my endgoals is to have anyone be able to run this on their local machines
 - Maven
 - Thymeleaf
 - Python (FastAPI) for LLM integration
+
+---
+
+## Project Structure
+
+*Work in Progress*
 
 ---
 
