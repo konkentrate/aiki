@@ -11,12 +11,16 @@ This repo contains the current source code.
 ---
 
 ## Features (Milestone 1)
+ 
+- [ ] Paste and submit raw text  
+- [ ] Simple HTML form (Thymeleaf)  
+- [ ] Python API for Mistral (raw text -> JSON Anki card)
 
--[ ] Upload PDF documents  
--[ ] Paste and submit raw text  
--[ ] Simple HTML form (Thymeleaf)  
--[ ] Basic controller to handle inputs  
--[ ] Python microservice for parsing (coming next)
+## Milestone 2
+- [ ] OCR PDF documents / scans into raw text for processing
+- [ ] Way to save card decks usinng categories / tags
+
+One of my endgoals is to have anyone be able to run this on their local machines, using their LLM API of choice (local or not) and manage big knowledge-gardens of Anki cards for fast learning and relearning.
 
 ---
 
