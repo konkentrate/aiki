@@ -1,10 +1,10 @@
-# Anki-AI Flashcard Generator
+# AIKI | Modular Anki Flashcard Generator using LLMs
 
 This is the first commit of a personal project to create a Java/Python app that can:
 
 - Accept PDF documents, pasted text, web links and potentially other formats of data
 - Extract, parse, and prepare the content for a large language model (LLM)
-- Eventually generate **Anki-style flashcards** to help users learn from any content
+- Generate **Anki-style flashcards** to help users learn and revise from any content
 
 This repo contains the current source code.
 
@@ -14,7 +14,7 @@ This repo contains the current source code.
  
 - [ ] Paste and submit raw text  
 - [ ] Simple HTML form (Thymeleaf)  
-- [ ] Python API for Mistral (raw text -> JSON Anki card)
+- [x] Python API for Mistral (raw text -> JSON Anki card)
 
 ## Milestone 2
 - [ ] OCR PDF documents / scans into raw text for processing
@@ -33,13 +33,15 @@ One of my endgoals is to have anyone be able to run this on their local machines
 ## 🛠 Tech Stack (up for change)
 
 - Java 24
-- Spring Boot 3
+- Spring Boot
 - Maven
 - Thymeleaf
-- FastAPI (Python) for AI/LLM integration
+- Python (FastAPI) for LLM integration
 
 ---
 
 ## How to Run
+
+*Work in Progress*
 
 ---
