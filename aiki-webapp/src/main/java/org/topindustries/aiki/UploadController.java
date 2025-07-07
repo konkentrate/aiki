@@ -1,5 +1,6 @@
 package org.topindustries.aiki;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,10 @@ import org.springframework.http.HttpHeaders;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.core.ParameterizedTypeReference;
+// Object serialization/deserialization
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +42,9 @@ public class UploadController {
             return "upload_result";
         }
 
+        // Debug
+        System.out.println("Received text input: " + textInput);
+
         // Prepare headers
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -49,13 +57,21 @@ public class UploadController {
 
         try {
             // Send to Python Service and receive a list of AikiCard objects
-            List<AikiCard> cards = restTemplate.exchange(
+            String jsonResponse = restTemplate.postForObject(
                     PYTHON_API_URL,
-                    HttpMethod.POST,
                     entity,
-                    new ParameterizedTypeReference<List<AikiCard>>() {
-                    }
-            ).getBody();
+                    String.class
+            );
+
+            // Debug
+            System.out.println("Received JSON response: " + jsonResponse);
+
+            // convert JSON string to List<AikiCard> using ObjectMapper (a tool for Java Object <-> JSON conversion)
+            ObjectMapper mapper = new ObjectMapper();
+            List<AikiCard> cards = mapper.readValue(
+                    jsonResponse,
+                    new TypeReference<List<AikiCard>>() {}
+            );
 
             // Check if cards are null or empty
             if (cards == null || cards.isEmpty()) {
@@ -63,12 +79,15 @@ public class UploadController {
                 model.addAttribute("content", "");
                 return "upload_result";
             }
+
+            model.addAttribute("message", "Generated Aiki Cards:");
+            model.addAttribute("cards", cards);
+            return "upload_result";
+
         } catch (Exception e) {
             model.addAttribute("message", "Error processing the text: " + e.getMessage());
             return "upload_result";
         }
-
-        return textInput;
 
     }
 
