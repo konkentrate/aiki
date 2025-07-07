@@ -19,8 +19,8 @@ import java.util.List;
 
 @Controller
 public class UploadController {
-private final RestTemplate restTemplate = new RestTemplate();
-private final String PYTHON_API_URL = "http://localhost:8000/process";
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final String PYTHON_API_URL = "http://localhost:8000/process";
 
     @GetMapping("/upload")
     public String showUploadForm() {
@@ -29,6 +29,8 @@ private final String PYTHON_API_URL = "http://localhost:8000/process";
 
     @PostMapping("/upload")
     public String handleTextSubmission(@RequestParam("text") String textInput, Model model) {
+
+        // Check if the input text is null or blank
         if (textInput == null || textInput.isBlank()) {
             model.addAttribute("message", "No text submitted!");
             model.addAttribute("content", "");
@@ -45,29 +47,30 @@ private final String PYTHON_API_URL = "http://localhost:8000/process";
 
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(request, headers);    // Create HttpEntity with headers and body
 
-        // Send to Python Service and receive a list of AikiCard objects
-        List<AikiCard> cards = restTemplate.exchange(
-                PYTHON_API_URL,
-                HttpMethod.POST,
-                entity,
-                new ParameterizedTypeReference<List<AikiCard>>() {}
-        ).getBody();
+        try {
+            // Send to Python Service and receive a list of AikiCard objects
+            List<AikiCard> cards = restTemplate.exchange(
+                    PYTHON_API_URL,
+                    HttpMethod.POST,
+                    entity,
+                    new ParameterizedTypeReference<List<AikiCard>>() {
+                    }
+            ).getBody();
 
-        // Check if cards are null or empty
-        if (cards == null || cards.isEmpty()) {
-            model.addAttribute("message", "No cards generated from the text!");
-            model.addAttribute("content", "");
+            // Check if cards are null or empty
+            if (cards == null || cards.isEmpty()) {
+                model.addAttribute("message", "No cards generated from the text!");
+                model.addAttribute("content", "");
+                return "upload_result";
+            }
+        } catch (Exception e) {
+            model.addAttribute("message", "Error processing the text: " + e.getMessage());
             return "upload_result";
         }
 
-        // Send to Python Service
-        String response = restTemplate.postForObject(PYTHON_API_URL, request, String.class);
-
-    model.addAttribute("message", "Generated Aiki Cards:");
-    model.addAttribute("content", response);
-    return "upload_result";
+        return textInput;
 
     }
 
-
 }
+

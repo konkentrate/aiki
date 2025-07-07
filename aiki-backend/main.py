@@ -1,6 +1,6 @@
 import os
 import json
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from mistralai import Mistral
 from dotenv import load_dotenv
@@ -48,11 +48,10 @@ async def process_text(data: TextInput):
         content = chat_response.choices[0].message.content
         content = content.replace("```json", "").replace("```", "").strip()
         aiki_cards = json.loads(content)
-    except Exception:
+        return aiki_cards
+    except json.JSONDecodeError:
         # If the response is not valid JSON, return raw content
-        print("Response content is not valid JSON, returning raw content.")
-        aiki_cards = chat_response.choices[0].message.content
-    return {"aiki_cards": aiki_cards}
+        raise HTTPException(status_code=422, detail = "Invalid JSON format in response")
 
 # Run the FastAPI application
 if __name__ == "__main__":

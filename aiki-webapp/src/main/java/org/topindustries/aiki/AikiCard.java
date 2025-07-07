@@ -15,6 +15,17 @@ public class AikiCard {
         this.tags = tags;
     }
 
-    // Add getters and setters
+    // add getters and setters
+    public String getFront() {
+        return front;
+    }
+
+    public String getBack() {
+        return back;
+    }
+
+    public String getTags() {
+        return tags;
+    }
 
 }
